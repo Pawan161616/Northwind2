@@ -1,0 +1,19 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="Training.Demos.Demo6.controller.View3"
+	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title" navButtonPress="goBack" showNavButton="true">
+		<content>
+			<f:SimpleForm id="SimpleFormToolbar">
+				<Label text="First Name"/>
+				<Input valueState="Error" id="firstNameId" width="50%" value="{firstName}"></Input>
+				<Label text="Last Name"/>
+				<Input id="lastNameId" width="50%" value="{lastName}"></Input>
+				<Label text="Gender"/>
+				<Input id="genderId" width="50%" value="{gender}"></Input>
+				<Label text="Company"/>
+				<Input id="companyId" width="50%" value="{salary}"></Input>
+				<Label text="Country"/>
+				<Input id="countryId" width="50%" value="{currency}"></Input>
+			</f:SimpleForm>
+		</content>
+	</Page>
+</mvc:View>

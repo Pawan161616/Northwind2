@@ -1,0 +1,75 @@
+{
+	"empDetails": {
+		"firstName": "raghu",
+		"lastName": "",
+		"gender": "",
+		"company": "",
+		"country": ""
+	},
+	"multipleEmpDetails": [{
+		"firstName": "Raghavendra",
+		"lastName": "Kumar",
+		"gender": "M",
+		"company": "TCS",
+		"country": "Blegium",
+		"salary": "1000",
+		"currency": "EUR"
+	}, {
+		"firstName": "Pawan",
+		"lastName": "Kumar",
+		"gender": "M",
+		"company": "IBM",
+		"country": "India",
+		"salary": "5000",
+		"currency": "USD"
+	}, {
+		"firstName": "Blessy",
+		"lastName": "Mathews",
+		"gender": "F",
+		"company": "Delloitte",
+		"country": "US",
+		"salary": "1660",
+		"currency": "INR"
+	}, {
+		"firstName": "Tanvi",
+		"lastName": "Shirshat",
+		"gender": "F",
+		"company": "PWC",
+		"country": "Australia",
+		"salary": "9000",
+		"currency": "AUD"
+	}],
+
+	"ProductDetails": [{
+		"productId": "HT-1000",
+		"productName": "HP EliteBook",
+		"productPrice": 100,
+		"productCurrency": "USD"
+	}, {
+		"productId": "HT-1001",
+		"productName": "DELL",
+		"productPrice": 200,
+		"productCurrency": "EUR"
+	}, {
+		"productId": "HT-2000",
+		"productName": "HP EliteBook V2",
+		"productPrice": 500,
+		"productCurrency": "INR"
+	}, {
+		"productId": "HT-1700",
+		"productName": "HP EliteBook",
+		"productPrice": 900,
+		"productCurrency": "AUD"
+	}, {
+		"productId": "HT-8000",
+		"productName": "ASUS",
+		"productPrice": 100,
+		"productCurrency": "USD"
+	}, {
+		"productId": "HT-7000",
+		"productName": "DUMMY",
+		"productPrice": 80000,
+		"productCurrency": "USD"
+	}]
+
+}

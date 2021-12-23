@@ -1,0 +1,17 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="Training.Demos.Demo6.controller.View2"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="This is View2">
+		<content>
+			<List items="{/multipleEmpDetails}" headerText="Employee Detials">
+				<ObjectListItem title="{firstName}" type="Active" press="onListItemPress"
+					number="{salary}"
+					numberUnit="{currency}">
+					<firstStatus>
+						<ObjectStatus text="{country}"/>
+					</firstStatus>
+					<ObjectAttribute text="{lastName}"/>
+				</ObjectListItem>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

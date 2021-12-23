@@ -1,0 +1,9 @@
+<mvc:View controllerName="Training.Demos.Demo6.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+
+		<App id="app">
+			<pages >
+		      <Button text="go To View 2" press="goToV2"></Button>
+			</pages>
+		</App>
+
+</mvc:View>
