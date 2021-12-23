@@ -1,0 +1,7 @@
+<mvc:View 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns = "sap.m"
+  controllerName = "northwind.controller.Welcome"
+>
+<Label text = "Hello"/>
+</mvc:View>
