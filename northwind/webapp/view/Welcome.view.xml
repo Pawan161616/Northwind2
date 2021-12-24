@@ -3,5 +3,5 @@
   xmlns = "sap.m"
   controllerName = "northwind.controller.Welcome"
 >
-<Label text = "Hello"/>
+<Image src="https://1.bp.blogspot.com/--kflukKM3cA/XvSuQDlb_aI/AAAAAAAAVng/sTA3jBh7KtAtepJ2c5yyDZemzWXXHFzQwCK4BGAsYHg/w1200-h630-p-k-no-nu/wallpaper-4k-for-pc--heroscreen.cc.png"/>
 </mvc:View>
