@@ -1,0 +1,7 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+          xmlns="sap.m"
+        controllerName="northwind.northwind2.controller.Orders">
+        <Label text="Welcome to Orders detail page"/>
+        <Button text="Back" press="toCustomer"/>
+
+</mvc:View>

@@ -1,0 +1,27 @@
+<mvc:View
+    controllerName="northwind.northwind2.controller.Customer"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                         <List id="listId"
+                        items="{/Customers}">
+                        <ObjectListItem
+                            id = "ListItemID"
+                            type = "Navigation"
+                            title="{ContactName}"
+                            press="onListItemPress"
+                            number="{CustomerID}">   
+                        </ObjectListItem>
+	                   </List>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
