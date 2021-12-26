@@ -11,11 +11,15 @@ sap.ui.define([
             onInit: function () {
 
             },
-            onListItemPress:function(){
+            onListItemPress:function(oEvent){
+             
+                var sItem = oEvent.getSource().getBindingContextPath();
+                var a = sItem.lastIndexOf(")");
+                var SId = sItem.substring(12,a-1);
                 var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("OrderDetails");
-          
-
+                oRouter.navTo("OrderDetails",{
+                    CustId: SId
+                });
             }
         });
     });

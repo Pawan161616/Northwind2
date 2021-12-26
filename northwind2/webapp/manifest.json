@@ -89,7 +89,7 @@
         },
         {
             "name": "OrderDetails",
-            "pattern":"Order",
+            "pattern":"Order/{CustId}",
             "target":[
                 "TargetOrder"
             ]
@@ -100,7 +100,6 @@
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          
           "viewName": "Customer"
         },
         "TargetOrder":{
