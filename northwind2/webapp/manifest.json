@@ -75,8 +75,8 @@
         "viewType": "XML",
         "async": true,
         "viewPath": "northwind.northwind2.view",
-        "controlAggregation": "pages",
         "controlId": "app",
+        "controlId": "idAppCon",
         "clearControlAggregation": false
       },
       "routes": [
@@ -84,14 +84,14 @@
           "name": "ProductDetails",
           "pattern": "",
           "target": [
-            "TargetProducts"
+            "TargetProducts","TargetEmpty"
           ]
         },
         {
             "name": "OrderDetails",
             "pattern":"Order/{ProductID}",
             "target":[
-                "TargetOrder"
+                    "TargetProducts","TargetOrder"
             ]
         }
       ],
@@ -99,22 +99,28 @@
         "TargetProducts": {
           "viewType": "XML",
           "transition": "slide",
-          "clearControlAggregation": false,
+          "controlAggregation": "masterPages",
           "viewName": "Products"
         },
         "TargetOrder":{
             "viewType":"XML",
             "transition":"slide",
-            "clearControlAggregation": false,
+            "controlAggregation":"detailPages",
             "viewName":"Orders"
+        },
+        "TargetEmpty":{
+            "viewType":"XML",
+            "transition":"slide",
+            "controlAggregation": "detailPages",
+            "viewName":"Empty"
         }
       }
     },
     "rootView": {
-      "viewName": "northwind.northwind2.view.Products",
+      "viewName": "northwind.northwind2.view.App",
       "type": "XML",
       "async": true,
-      "id": "Product"
+      "id": "App"
     }
   }
 }
