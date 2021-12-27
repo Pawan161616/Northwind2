@@ -1,8 +1,28 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
           xmlns="sap.m"
         controllerName="northwind.northwind2.controller.Orders">
-       
-        <Label text="{CompanyName}"/>
-        <Button text="Back" press="toCustomer"/>
+        <Button text="Back" press="toProductList"/>
+        <ObjectHeader  
+          title="{ProductName}" number="{UnitPrice}" numberUnit="EUR">
+          <ObjectAttribute text="{QuantityPerUnit}"/>
+          <ObjectAttribute text="Units in Stock : {UnitsInStock}"/>
+           <ObjectAttribute text="Units in Order : {UnitsOnOrder}"/>
+            <ObjectAttribute text="Reorder Level : {ReorderLevel}"/>
+           <statuses>
+           <ObjectStatus text="{
+                                  path:'Discontinued',
+                                  formatter:'.getObjectStatus'                  
+                                    }"
+                        state="{
+                                  path:'Discontinued',
+                                  formatter:'.getState'      
+                                    }"></ObjectStatus>
+           </statuses>
+        
+         
+            
+
+         
+        </ObjectHeader>
 
 </mvc:View>

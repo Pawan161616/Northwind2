@@ -1,0 +1,41 @@
+<mvc:View
+    controllerName="northwind.northwind2.controller.Products"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                    <Toolbar>
+                    <ToolbarSpacer/>
+                      
+                       <SearchField id="searchId" placeholder="type Product name" liveChange ="onSearch"/>
+                    </Toolbar>
+                         <List id="listId"
+                        items="{path:'/Products',
+                                sorter:{path:'ProductName',
+                                  descending:true}}"
+                        >
+                        <ObjectListItem
+                            id = "ListItemID"
+                            type = "Navigation"
+                            title="{ProductName}"
+                            press="onListItemPress"
+                            number="{UnitPrice}">   
+                            <firstStatus>
+                              <ObjectStatus text="{QuantityPerUnit}" />
+                            </firstStatus>
+                            <secondStatus>
+                            <ObjectStatus text="Product Id: {ProductID}"/>
+                            </secondStatus>
+                        </ObjectListItem>
+	                   </List>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

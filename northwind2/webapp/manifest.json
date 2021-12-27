@@ -81,26 +81,26 @@
       },
       "routes": [
         {
-          "name": "CustomerDetails",
+          "name": "ProductDetails",
           "pattern": "",
           "target": [
-            "TargetCustomer"
+            "TargetProducts"
           ]
         },
         {
             "name": "OrderDetails",
-            "pattern":"Order/{CustId}",
+            "pattern":"Order/{ProductID}",
             "target":[
                 "TargetOrder"
             ]
         }
       ],
       "targets": {
-        "TargetCustomer": {
+        "TargetProducts": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewName": "Customer"
+          "viewName": "Products"
         },
         "TargetOrder":{
             "viewType":"XML",
@@ -111,10 +111,10 @@
       }
     },
     "rootView": {
-      "viewName": "northwind.northwind2.view.Customer",
+      "viewName": "northwind.northwind2.view.Products",
       "type": "XML",
       "async": true,
-      "id": "Customer"
+      "id": "Product"
     }
   }
 }
