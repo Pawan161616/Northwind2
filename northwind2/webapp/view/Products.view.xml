@@ -12,7 +12,7 @@
                     <Toolbar>
                     <ToolbarSpacer/>
                       
-                       <SearchField id="searchId" placeholder="type Product name" liveChange ="onSearch"/>
+                       <SearchField id="searchId" placeholder="SEARCH..." liveChange ="onSearch"/>
                     </Toolbar>
                          <List id="listId"
                         items="{path:'/Products',

@@ -15,7 +15,7 @@ sap.ui.define([
                sPath = "/Products("+ ProductID + ")";
                this.getView().bindElement(sPath);
            },
-           toProductList: function(){
+           toEmptyPage: function(){
           
                var oRouter = this.getOwnerComponent().getRouter();
                oRouter.navTo("ProductDetails");
