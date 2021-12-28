@@ -3,11 +3,17 @@
         controllerName="northwind.northwind2.controller.Orders">
         <Page title="Product Details" showNavButton= "true" navButtonPress="toEmptyPage">
         <ObjectHeader  
-          title="{ProductName}" number="{UnitPrice}" numberUnit="EUR">
+          title="{ProductName}" number="{UnitPrice}" numberUnit="EUR"
+             icon = "{
+                 path: 'Category/Picture',
+                 formatter:'.getIcon'
+             }">
           <ObjectAttribute text="{QuantityPerUnit}"/>
           <ObjectAttribute text="Units in Stock : {UnitsInStock}"/>
            <ObjectAttribute text="Units in Order : {UnitsOnOrder}"/>
             <ObjectAttribute text="Reorder Level : {ReorderLevel}"/>
+            <ObjectAttribute text="Order Id: {Order_Details/Discount}"/>
+            
            <statuses>
            <ObjectStatus text="{
                                   path:'Discontinued',
@@ -18,11 +24,6 @@
                                   formatter:'.getState'      
                                     }"></ObjectStatus>
            </statuses>
-        
-         
-            
-
-         
         </ObjectHeader>
 </Page>
 </mvc:View>

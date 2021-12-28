@@ -17,17 +17,19 @@
                          <List id="listId"
                         items="{path:'/Products',
                                 sorter:{path:'ProductName',
-                                  descending:true}}"
-                        >
+                                  descending:false},
+                                 parameters:{'expand':'Category'} 
+                                 }"
+                               growing="true"
+                               growingThreshold = "6"  
+                               growingScrollToLoad="false">
                         <ObjectListItem
                             id = "ListItemID"
                             type = "Navigation"
                             title="{ProductName}"
                             press="onListItemPress"
-                            number="{UnitPrice}">   
-                            <firstStatus>
-                              <ObjectStatus text="{QuantityPerUnit}" />
-                            </firstStatus>
+                            number="{UnitPrice}"
+                            intro ="{Category/CategoryName}">   
                             <secondStatus>
                             <ObjectStatus text="Product Id: {ProductID}"/>
                             </secondStatus>

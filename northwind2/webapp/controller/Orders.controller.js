@@ -32,7 +32,13 @@ sap.ui.define([
               return "Error";
               else
               return "Success";
-           }
+           },
+           getIcon: function(Image){
+                  if(Image){
+                    var sImage = "data:image/bmp;base64," + Image.substring(104);
+                    return sImage;
+                  }
+             }
            
     });
 });
