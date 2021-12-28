@@ -13,7 +13,9 @@ sap.ui.define([
         
                ProductID = oEvent.getParameter("arguments").ProductID;
                sPath = "/Products("+ ProductID + ")";
-               this.getView().bindElement(sPath);
+               this.getView().bindElement(sPath,{
+                expand:"Supplier"
+               });
            },
            toEmptyPage: function(){
           

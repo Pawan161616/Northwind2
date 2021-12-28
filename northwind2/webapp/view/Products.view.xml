@@ -18,7 +18,9 @@
                         items="{path:'/Products',
                                 sorter:{path:'ProductName',
                                   descending:false},
-                                 parameters:{'expand':'Category'} 
+                                  parameters:{
+                                     'expand':'Category'
+                                  }
                                  }"
                                growing="true"
                                growingThreshold = "6"  
