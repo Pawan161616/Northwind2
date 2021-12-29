@@ -1,19 +1,15 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
           xmlns="sap.m"
+          xmlns:f="sap.ui.layout.form"
+          xmlns:core="sap.ui.core"
         controllerName="northwind.northwind2.controller.Orders">
         <Page title="Product Details" showNavButton= "true" navButtonPress="toEmptyPage">
         <ObjectHeader  
-          title="{ProductName}" number="{UnitPrice}" numberUnit="EUR"
-          icon="{
-              path:'Category/Picture',
-              formatter:'.getIcon'
-          }">
+          title="{ProductName}" number="{UnitPrice}" numberUnit="EUR">
           <ObjectAttribute text="{QuantityPerUnit}"/>
           <ObjectAttribute text="Units in Stock : {UnitsInStock}"/>
            <ObjectAttribute text="Units in Order : {UnitsOnOrder}"/>
             <ObjectAttribute text="Reorder Level : {ReorderLevel}"/>
-            <ObjectAttribute text="supplier Id: {Supplier/SupplierID}"/>
-             <ObjectAttribute text="Description: {Category/Description}"/>
             
            <statuses>
            <ObjectStatus text="{
@@ -26,5 +22,69 @@
                                     }"></ObjectStatus>
            </statuses>
         </ObjectHeader>
+        <IconTabBar>
+        <items>
+         <IconTabFilter text="Info" icon="sap-icon://information">
+         <ObjectHeader title="{Category/CategoryName}" intro="{Category/Description}"
+          icon="{
+              path:'Category/Picture',
+              formatter:'.getIcon'
+          }" />
+         </IconTabFilter>
+         <IconTabFilter text="Supplier" icon="sap-icon://supplier">
+         		<f:SimpleForm id="SimpleFormDisplay480_Trial"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Supplier Details"
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="3"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+				<core:Title text="Supplier" />
+                <Label text="Supplier ID" />
+				<Text text="{Supplier/SupplierID}" />
+				<Label text="Company" />
+				<Text text="{Supplier/CompanyName}" />
+                <Label text="Contact Name"/>
+                <Text text="{Supplier/ContactName}"/>
+				<Label text="Title" />
+				<Text text="{Supplier/ContactTitle}" />
+				
+				<core:Title text="Address" />
+                <Label text="Address" />
+				<Text text="{Supplier/Address}" />
+				<Label text="City/Region" />
+				<Text text="{Supplier/City}{Supplier/Region}" />
+				<Label text="Postal Code" />
+				<Text text="{Supplier/PostalCode}" />
+				<Label text="Country" />
+				<Text text="{Supplier/Country}" />
+				
+				
+				<core:Title text="Contact Details" />
+                <Label text="Phone" />
+				<Text text="{Supplier/Phone}" />
+				<Label text="Fax" />
+				<Text text="{Supplier/Fax}" />
+				<Label text="HomePage" />
+                <Text text="{Supplier/HomePage}" />
+
+              
+
+			</f:content>
+		</f:SimpleForm>
+         </IconTabFilter>
+         </items>
+        </IconTabBar>
 </Page>
 </mvc:View>
