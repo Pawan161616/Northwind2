@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns="sap.m">
+   <f:SimpleForm id="SimpleFormDisplay480_Trial"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Supplier Details"
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="3"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+				<core:Title text="Supplier" />
+                <Label text="Supplier ID" />
+				<Text text="{Supplier/SupplierID}" />
+				<Label text="Company" />
+				<Text text="{Supplier/CompanyName}" />
+                <Label text="Contact Name"/>
+                <Text text="{Supplier/ContactName}"/>
+				<Label text="Title" />
+				<Text text="{Supplier/ContactTitle}" />
+				
+				<core:Title text="Address" />
+                <Label text="Address" />
+				<Text text="{Supplier/Address}" />
+				<Label text="City/Region" />
+				<Text text="{Supplier/City}{Supplier/Region}" />
+				<Label text="Postal Code" />
+				<Text text="{Supplier/PostalCode}" />
+				<Label text="Country" />
+				<Text text="{Supplier/Country}" />
+				
+				
+				<core:Title text="Contact Details" />
+                <Label text="Phone" />
+				<Text text="{Supplier/Phone}" />
+				<Label text="Fax" />
+				<Text text="{Supplier/Fax}" />
+				<Label text="HomePage" />
+                <Text text="{Supplier/HomePage}" />
+
+              
+
+			</f:content>
+		</f:SimpleForm> 
+</core:FragmentDefinition>
