@@ -34,6 +34,9 @@
          <IconTabFilter text="Supplier" icon="sap-icon://supplier">
          <core:Fragment fragmentName="northwind.northwind2.fragments.supplierData" type="XML"/>
          </IconTabFilter>
+         <IconTabFilter text="Invoice" icon="sap-icon://monitor-payments">
+         <core:Fragment fragmentName = "northwind.northwind2.fragments.Invoice" type = "XML"/>
+         </IconTabFilter>
          </items>
         </IconTabBar>
 </Page>

@@ -16,7 +16,7 @@
                     </Toolbar>
                          <List id="listId"
                         items="{path:'/Products',
-                                sorter:{path:'ProductName',
+                                sorter:{path:'ProductID',
                                   descending:false},
                                   parameters:{
                                      'expand':'Category'
@@ -24,7 +24,7 @@
                                  }"
                                growing="true"
                                growingThreshold = "6"  
-                               growingScrollToLoad="false">
+                               growingScrollToLoad="true">
                         <ObjectListItem
                             id = "ListItemID"
                             type = "Navigation"
