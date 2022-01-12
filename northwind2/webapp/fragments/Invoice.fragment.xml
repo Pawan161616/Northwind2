@@ -18,13 +18,8 @@
 			singleContainerFullSize="false" >
 			<f:content>
 				<core:Title text="Invoice" />
-                <Label text="ShipName" />
-				<Text text="{myJInvoiceModel>/Invoice/ShipName}" />
-				
-				
-			
-
-              
+                <Label text="ShipName/CustomerName" />
+				<Input value="{myJInvoiceModel>/Invoice/ShipName}" showValueHelp="true" valueHelpRequest="_searchHelp"/>
 
 			</f:content>
 		</f:SimpleForm>

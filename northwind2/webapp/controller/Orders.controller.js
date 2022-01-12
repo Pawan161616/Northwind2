@@ -1,8 +1,7 @@
 sap.ui.define([
-    'sap/ui/core/mvc/Controller'
-  
-  
-],function(Controller){
+    'sap/ui/core/mvc/Controller',
+    'sap/ui/core/Fragment'
+  ],function(Controller,Fragment){
     return Controller.extend("northwind2.northwind.controller.Orders",{
          
         onInit: function(){
@@ -29,13 +28,40 @@ sap.ui.define([
                 expand:"Supplier"
                });
                var odataModel = this.getView().getModel();
-               odataModel.read("/Invoices",{sync:false,success:function(oData,response){
-                 debugger;
-               },
-               error:function(oData,response){
-                   debugger;
+               odataModel.read("/Invoices",{success:function(oData,response){
+                   for ( var i=0;i<oData.results.length;i++){
+                       if (oData.results[i].ProductID == ProductID){
+                           var Payload = {"ShipName":oData.results[i].ShipName}
+                        //    debugger;
+                           
+                       }
+                   }  
                }
             });
+           },
+           _searchHelp: function(){
+               debugger;
+               if(!this.pDialog){
+                //    this.pDialog = this.loadFragment({
+                //        type:"XML",
+                //        name: "northwind2.northwind.fragments.SearchHelp"
+                //    });
+
+                //    this.pDialog.then(function(oDialog){
+                //     oDialog.open();
+                // });
+                Fragment.load({
+                    type:"XML",
+                    id:"searchHelp",
+                    name:"northwind2.northwind.fragments.SearchHelp",
+                    controller:this
+                }).then(function(oDialog){
+                   
+                    oDialog.open();
+                });
+               
+               }
+             
            },
            toEmptyPage: function(){
           
