@@ -9,15 +9,16 @@ sap.ui.define([
           oRouter.getRoute("OrderDetails").attachMatched(this.onObjectMatched.bind(this));
         // var oJsonModel = this.models.createDeviceModel();
         var oJsonModel = new sap.ui.model.json.JSONModel();
-        oJsonModel.setData({"Invoice":[]});
+        oJsonModel.setData({"Invoice":[{
+                                        "CompanyName":[]
+                                    }]});
         this.getView().setModel(oJsonModel,"myJInvoiceModel");                                            
         this.generateInvoice();
-        
-           },
+         },
            generateInvoice: function(){
               
-              var payload = {"ShipName":"Alfred's Futterkiste"}
-              this.getView().getModel("myJInvoiceModel").setProperty("/Invoice/",payload);
+            //   var payload = {"ShipName":"Alfred's Futterkiste"}
+            //   this.getView().getModel("myJInvoiceModel").setProperty("/Invoice/",payload);
               
            },
            onObjectMatched: function(oEvent){
@@ -28,20 +29,24 @@ sap.ui.define([
                 expand:"Supplier"
                });
                var odataModel = this.getView().getModel();
+               var Payload=[];
                odataModel.read("/Invoices",{success:function(oData,response){
                    for ( var i=0;i<oData.results.length;i++){
                        if (oData.results[i].ProductID == ProductID){
-                           var Payload = {"ShipName":oData.results[i].ShipName}
-                        //    debugger;
+                        //    var Payload_beta = {"ShipName":oData.results[i].ShipName}
+                          
+                           Payload.push(oData.results[i].ShipName);
+                          this.getView().getModel("myJInvoiceModel").setProperty("/Invoice/CompanyName",Payload);
                            
                        }
                    }  
-               }
+               }.bind(this)
             });
            },
+           detailPopup: null,
            _searchHelp: function(){
-               debugger;
-               if(!this.pDialog){
+              
+               if(!this.detailPopup){
                 //    this.pDialog = this.loadFragment({
                 //        type:"XML",
                 //        name: "northwind2.northwind.fragments.SearchHelp"
@@ -56,10 +61,16 @@ sap.ui.define([
                     name:"northwind2.northwind.fragments.SearchHelp",
                     controller:this
                 }).then(function(oDialog){
-                   
-                    oDialog.open();
-                });
+                    debugger;
+                    this.detailPopup = oDialog;
+                     this.detailPopup.bindElement("/Invoice/CompanyName");
+                     this.detailPopup.setModel(this.getView().getModel("myJInvoiceModel"));
+                     this.getView().addDependent(this.detailPopup);
+                     this.detailPopup.open();
+                }.bind(this));
                
+               }else{
+                   this.detailPopup.open();
                }
              
            },
