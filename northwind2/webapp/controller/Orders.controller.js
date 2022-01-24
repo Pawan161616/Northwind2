@@ -32,9 +32,7 @@ sap.ui.define([
                var Payload=[];
                odataModel.read("/Invoices",{success:function(oData,response){
                    for ( var i=0;i<oData.results.length;i++){
-                       if (oData.results[i].ProductID == ProductID){
-                        //    var Payload_beta = {"ShipName":oData.results[i].ShipName}
-                          
+                       if (oData.results[i].ProductID == ProductID){                        
                            Payload.push(oData.results[i].ShipName);
                           this.getView().getModel("myJInvoiceModel").setProperty("/Invoice/CompanyName",Payload);
                            
