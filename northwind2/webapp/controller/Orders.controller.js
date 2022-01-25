@@ -56,10 +56,7 @@ sap.ui.define([
                        this.detailPopup = oDialog;
                        var locModel = this.getView().getModel("myJInvoiceModel");
                        this.detailPopup.setModel(locModel);
-                       this.detailPopup.bindAggregation("items",{
-                           path: '/myJInvoiceModel/Invoice'
-                       });
-                       detailPopup.open();
+                       this.detailPopup.open();
                 }.bind(this));
                 // Fragment.load({
                 //     type:"XML",
