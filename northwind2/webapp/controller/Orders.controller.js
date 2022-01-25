@@ -41,31 +41,39 @@ sap.ui.define([
                }.bind(this)
             });
            },
-           detailPopup: null,
+         
            _searchHelp: function(){
               
                if(!this.detailPopup){
-                //    this.pDialog = this.loadFragment({
-                //        type:"XML",
-                //        name: "northwind2.northwind.fragments.SearchHelp"
-                //    });
+                   this.pDialog = this.loadFragment({
+                       type:"XML",
+                       id: this.getView().getId(),
+                       name: "northwind.northwind2.fragments.SearchHelp",
+                       controller: this
+                   });
 
-                //    this.pDialog.then(function(oDialog){
-                //     oDialog.open();
-                // });
-                Fragment.load({
-                    type:"XML",
-                    id:"searchHelp",
-                    name:"northwind2.northwind.fragments.SearchHelp",
-                    controller:this
-                }).then(function(oDialog){
-                    debugger;
-                    this.detailPopup = oDialog;
-                     this.detailPopup.bindElement("/Invoice/CompanyName");
-                     this.detailPopup.setModel(this.getView().getModel("myJInvoiceModel"));
-                     this.getView().addDependent(this.detailPopup);
-                     this.detailPopup.open();
+                   this.pDialog.then(function(oDialog){
+                       this.detailPopup = oDialog;
+                       var locModel = this.getView().getModel("myJInvoiceModel");
+                       this.detailPopup.setModel(locModel);
+                       this.detailPopup.bindAggregation("items",{
+                           path: '/myJInvoiceModel/Invoice'
+                       });
+                       detailPopup.open();
                 }.bind(this));
+                // Fragment.load({
+                //     type:"XML",
+                //     id:"searchHelp",
+                //     name:"northwind2.northwind.fragments.SearchHelp",
+                //     controller:this
+                // }).then(function(oDialog){
+                //     debugger;
+                //     this.detailPopup = oDialog;
+                //      this.detailPopup.bindElement("/Invoice/CompanyName");
+                //      this.detailPopup.setModel(this.getView().getModel("myJInvoiceModel"));
+                //      this.getView().addDependent(this.detailPopup);
+                //      this.detailPopup.open();
+                // }.bind(this));
                
                }else{
                    this.detailPopup.open();
