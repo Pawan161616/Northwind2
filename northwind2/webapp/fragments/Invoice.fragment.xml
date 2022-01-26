@@ -22,7 +22,7 @@
 				<Input id="CustNameID"  showValueHelp="true" valueHelpRequest="_searchHelp"/>
                 <Label text = "Discount"/>
                 <ComboBox id="DiscountId" items="{
-                    path:'myJInviceModel2>/Invoice/CustomerName'
+                    path:'myJInviceModel2>/Invoice'
                 }">
              <core:Item  text="{myJInviceModel2>Discount}"/>
                 </ComboBox>

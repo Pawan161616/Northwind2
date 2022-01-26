@@ -5,16 +5,11 @@ sap.ui.define([
     return Controller.extend("northwind.northwind2.controller.Orders",{
 
          ProductID:null,
-         custName: null,
         onInit: function(){
           var oRouter = this.getOwnerComponent().getRouter();
           oRouter.getRoute("OrderDetails").attachMatched(this.onObjectMatched.bind(this));
-        // var oJsonModel = this.models.createDeviceModel();
         var oJsonModel = new sap.ui.model.json.JSONModel();
-        oJsonModel.setData({"Invoice":[{
-                                        "CustomerName":[],
-                                        
-                                    }]});
+        oJsonModel.setData({"Invoice":[]});
         this.getView().setModel(oJsonModel,"myJInvoiceModel");                                            
         this.generateInvoice();
          },
@@ -37,24 +32,31 @@ sap.ui.define([
                odataModel.read("/Invoices",{success:function(oData,response){
                    for ( var i=0;i<oData.results.length;i++){
                        if (oData.results[i].ProductID == this.ProductID){      
-                           var PayloadBeta = {"CustomerName":oData.results[i].CustomerName,
-                                               "ProductId":oData.results[i].ProductID};     
+                           var PayloadBeta =  {"ProductID": oData.results[i].ProductID,
+                                                "CustomerName":oData.results[i].CustomerName,
+                                                "Discount":oData.results[i].Discount,
+                                                "OrderID": oData.results[i].OrderID,
+                                                "ProductName": oData.results[i].ProductName,
+                                                "Quantity": oData.results[i].Quantity,
+                                                "Salesperson": oData.results[i].Salesperson,
+                                                "ShipperName": oData.results[i].ShipperName,
+                                                "UnitPrice": oData.results[i].UnitPrice
+                                                };     
                                         
                            Payload.push(PayloadBeta);
-                           locModel.setProperty("/Invoice/CustomerName",Payload);
+                           locModel.setProperty("/Invoice",Payload);
                            this.getView().setModel(locModel,"myJInvoiceModel");
                            
                        }
-                    //    if((oData.results[i].ProductID === ProductID)&&(oData.results[i].ShipName === this.oInput.getValue())){
-                    //        debugger;
-                    //    }
+                   
                    }  
                }.bind(this)
             });
            },
             locModel:null,
            _searchHelp: function(){
-              
+              this.getView().byId("CustNameID").setValue('');
+              this.getView().byId("DiscountId").setValue('');
                if(!this.detailPopup){
                    this.pDialog = this.loadFragment({
                        type:"XML",
@@ -68,7 +70,7 @@ sap.ui.define([
                        this.locModel = this.getView().getModel("myJInvoiceModel");
                        this.detailPopup.setModel(this.locModel,"myJInvoiceModel0");
                        this.detailPopup.bindAggregation("items",{
-                           path:"myJInvoiceModel0>/Invoice/CustomerName",
+                           path:"myJInvoiceModel0>/Invoice",
                            template: new sap.m.StandardListItem({
                                title:"{myJInvoiceModel0>CustomerName}"
                            })
@@ -113,27 +115,27 @@ sap.ui.define([
            DiscountDropDown: function(){
             var odataModel = this.getView().getModel();
             var oLocModel = this.getView().getModel("myJInvoiceModel");
-            odataModel.read("/Invoices",{success:function(oData,response){
-                var betaCustName = this.custName.getValue();
-                var payload =[];
-               
-                  for(var i = 0;i<oData.results.length;i++){
-                      if ((oData.results[i].ProductID == this.ProductID)&&(oData.results[i].CustomerName == betaCustName)){
-                          var payloadBeta = {"ProductID": oData.results[i].ProductID,
-                                         "CustomerName":oData.results[i].CustomerName,
-                                         "Discount":oData.results[i].Discount};
-                          
-                          payload.push(payloadBeta);
-                          
-                      }
-                      
-                  }
-                  oLocModel.setProperty("/Invoice/CustomerName",payload);
-                  this.getView().setModel(oLocModel,"myJInviceModel2");
-                //   var oComboBox = this.getView().byId("DiscountId");
-                //   oComboBox
-            }.bind(this)
-        });
+        var payload = [];
+        for(var i=0;i < oLocModel.oData.Invoice.length;i++){
+             if((oLocModel.oData.Invoice[i].ProductID == this.ProductID) && 
+                 (oLocModel.oData.Invoice[i].CustomerName == this.custName.getValue())){
+                     var PayloadBeta = {"ProductID": oLocModel.oData.Invoice[i].ProductID,
+                                        "CustomerName":oLocModel.oData.Invoice[i].CustomerName,
+                                        "Discount":oLocModel.oData.Invoice[i].Discount,
+                                        "OrderID": oLocModel.oData.Invoice[i].OrderID,
+                                        "ProductName": oLocModel.oData.Invoice[i].ProductName,
+                                        "Quantity": oLocModel.oData.Invoice[i].Quantity,
+                                        "Salesperson": oLocModel.oData.Invoice[i].Salesperson,
+                                        "ShipperName": oLocModel.oData.Invoice[i].ShipperName,
+                                        "UnitPrice": oLocModel.oData.Invoice[i].UnitPrice};
+                                        payload.push(PayloadBeta);                   
+                                        }
+                                       
+        }
+        var locModel = new sap.ui.model.json.JSONModel();
+        locModel.setData({"Invoice":[]});
+        this.getView().setModel(locModel,"myJInviceModel2");
+        locModel.setProperty("/Invoice/",payload);
         },
            toEmptyPage: function(){
           
