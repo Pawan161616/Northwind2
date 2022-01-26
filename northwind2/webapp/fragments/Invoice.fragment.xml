@@ -18,8 +18,14 @@
 			singleContainerFullSize="false" >
 			<f:content>
 				<core:Title text="Invoice" />
-                <Label text="ShipName/CustomerName" />
-				<Input value="{myJInvoiceModel>/Invoice/ShipName}" showValueHelp="true" valueHelpRequest="_searchHelp"/>
+                <Label text="Customer Name" />
+				<Input id="CustNameID"  showValueHelp="true" valueHelpRequest="_searchHelp"/>
+                <Label text = "Discount"/>
+                <ComboBox id="DiscountId" items="{
+                    path:'myJInviceModel2>/Invoice/CustomerName'
+                }">
+             <core:Item  text="{myJInviceModel2>Discount}"/>
+                </ComboBox>
 
 			</f:content>
 		</f:SimpleForm>

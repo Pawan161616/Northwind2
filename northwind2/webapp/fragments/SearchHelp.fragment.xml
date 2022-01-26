@@ -1,10 +1,8 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-  <SelectDialog  title="SEARCH HELP" id="mySearchDialog"
-                 items="{path:'/Invoice'}">
+  <SelectDialog  title="SEARCH HELP" id="mySearchDialog" confirm = "onSelect"
+               >
                  
-<StandardListItem
-            
-			title="{CompanyName}"/>
+
  
    
   </SelectDialog>
