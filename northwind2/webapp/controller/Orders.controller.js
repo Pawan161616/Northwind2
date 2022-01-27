@@ -5,6 +5,7 @@ sap.ui.define([
     return Controller.extend("northwind.northwind2.controller.Orders",{
 
          ProductID:null,
+         custName: this.getView().byId("CustNameID").getValue(),
         onInit: function(){
           var oRouter = this.getOwnerComponent().getRouter();
           oRouter.getRoute("OrderDetails").attachMatched(this.onObjectMatched.bind(this));
@@ -57,6 +58,7 @@ sap.ui.define([
            _searchHelp: function(){
               this.getView().byId("CustNameID").setValue('');
               this.getView().byId("DiscountId").setValue('');
+              this.getView().byId("orderId").setValue('');
                if(!this.detailPopup){
                    this.pDialog = this.loadFragment({
                        type:"XML",
@@ -91,51 +93,102 @@ sap.ui.define([
                 //      this.detailPopup.open();
                 // }.bind(this));
                
-               }else{
-                   if(this.getView().byId("CustNameID").getValue() != ''){
-                       this.detailPopup.setModel(this.locModel,"myJInvoiceModel0");
-                       this.detailPopup.open();
-                   }
-                   else{
+               }else{             
                     this.detailPopup.open();
-                   }
-                  
                }
              
            },
         
            onSelect: function(oEvent){
-               var sTitle = oEvent.getParameter("selectedItem").getTitle();
-           
-               this.custName = this.getView().byId("CustNameID");
-               this.custName.setValue(sTitle);
-               this.DiscountDropDown();
+              
+                var sTitle = oEvent.getParameter("selectedItem").getTitle();
+
+                this.custName = this.getView().byId("CustNameID");
+               
+
+                this.custName.setValue(sTitle);
+                this.DiscountDropDown();
                
            },
            DiscountDropDown: function(){
-            var odataModel = this.getView().getModel();
-            var oLocModel = this.getView().getModel("myJInvoiceModel");
-        var payload = [];
-        for(var i=0;i < oLocModel.oData.Invoice.length;i++){
-             if((oLocModel.oData.Invoice[i].ProductID == this.ProductID) && 
-                 (oLocModel.oData.Invoice[i].CustomerName == this.custName.getValue())){
-                     var PayloadBeta = {"ProductID": oLocModel.oData.Invoice[i].ProductID,
-                                        "CustomerName":oLocModel.oData.Invoice[i].CustomerName,
-                                        "Discount":oLocModel.oData.Invoice[i].Discount,
-                                        "OrderID": oLocModel.oData.Invoice[i].OrderID,
-                                        "ProductName": oLocModel.oData.Invoice[i].ProductName,
-                                        "Quantity": oLocModel.oData.Invoice[i].Quantity,
-                                        "Salesperson": oLocModel.oData.Invoice[i].Salesperson,
-                                        "ShipperName": oLocModel.oData.Invoice[i].ShipperName,
-                                        "UnitPrice": oLocModel.oData.Invoice[i].UnitPrice};
-                                        payload.push(PayloadBeta);                   
-                                        }
-                                       
-        }
-        var locModel = new sap.ui.model.json.JSONModel();
-        locModel.setData({"Invoice":[]});
-        this.getView().setModel(locModel,"myJInviceModel2");
-        locModel.setProperty("/Invoice/",payload);
+                    
+                    var oLocModel = this.getView().getModel("myJInvoiceModel");
+                    var payload = [];
+                    for(var i=0;i < oLocModel.oData.Invoice.length;i++){
+                        if((oLocModel.oData.Invoice[i].ProductID == this.ProductID) && 
+                            (oLocModel.oData.Invoice[i].CustomerName == this.custName.getValue())){
+                                var PayloadBeta = {"ProductID": oLocModel.oData.Invoice[i].ProductID,
+                                                    "CustomerName":oLocModel.oData.Invoice[i].CustomerName,
+                                                    "Discount":oLocModel.oData.Invoice[i].Discount,
+                                                    "OrderID": oLocModel.oData.Invoice[i].OrderID,
+                                                    "ProductName": oLocModel.oData.Invoice[i].ProductName,
+                                                    "Quantity": oLocModel.oData.Invoice[i].Quantity,
+                                                    "Salesperson": oLocModel.oData.Invoice[i].Salesperson,
+                                                    "ShipperName": oLocModel.oData.Invoice[i].ShipperName,
+                                                    "UnitPrice": oLocModel.oData.Invoice[i].UnitPrice};
+                                                    payload.push(PayloadBeta);                   
+                                                    }
+                                            
+                        }
+                        var locModel = new sap.ui.model.json.JSONModel();
+                        locModel.setData({"Invoice":[]});
+                        this.getView().setModel(locModel,"myJInvoiceModel2");
+                        locModel.setProperty("/Invoice/",payload);
+                        },
+           onSelectingDiscountID: function(){
+                            this.getView().byId("orderId").setValue('');
+                            var oLocModel = this.getView().getModel("myJInvoiceModel2");
+                            var Discount = this.getView().byId("DiscountId");
+                            var payload = [];
+                            for(var i=0;i < oLocModel.oData.Invoice.length;i++){
+                                if((oLocModel.oData.Invoice[i].ProductID == this.ProductID) && 
+                                    (oLocModel.oData.Invoice[i].CustomerName == this.custName.getValue())&&
+                                    (oLocModel.oData.Invoice[i].Discount == Discount.getValue())){
+                                        var PayloadBeta = {"ProductID": oLocModel.oData.Invoice[i].ProductID,
+                                                            "CustomerName":oLocModel.oData.Invoice[i].CustomerName,
+                                                            "Discount":oLocModel.oData.Invoice[i].Discount,
+                                                            "OrderID": oLocModel.oData.Invoice[i].OrderID,
+                                                            "ProductName": oLocModel.oData.Invoice[i].ProductName,
+                                                            "Quantity": oLocModel.oData.Invoice[i].Quantity,
+                                                            "Salesperson": oLocModel.oData.Invoice[i].Salesperson,
+                                                            "ShipperName": oLocModel.oData.Invoice[i].ShipperName,
+                                                            "UnitPrice": oLocModel.oData.Invoice[i].UnitPrice};
+                                                            payload.push(PayloadBeta);                   
+                                                            }
+                                                    }
+                                        var locModel = new sap.ui.model.json.JSONModel();
+                                        locModel.setData({"Invoice":[]});
+                                        this.getView().setModel(locModel,"myJInvoiceModel3");
+                                        locModel.setProperty("/Invoice/",payload);  
+                                                  
+        },
+        onSelectingOrderID: function(){
+                                // this.getView().byId("orderId").setValue('');
+                                var oLocModel = this.getView().getModel("myJInvoiceModel3");
+                                var orderID = this.getView().byId("orderId");
+                                var Discount = this.getView().byId("DiscountId");
+                                var payload = [];
+                                for(var i=0;i < oLocModel.oData.Invoice.length;i++){
+                                    if((oLocModel.oData.Invoice[i].ProductID == this.ProductID) && 
+                                        (oLocModel.oData.Invoice[i].CustomerName == this.custName.getValue())&&
+                                        (oLocModel.oData.Invoice[i].Discount == Discount.getValue())&&
+                                        (oLocModel.oData.Invoice[i].OrderID == orderID.getValue())){
+                                            var PayloadBeta = {"ProductID": oLocModel.oData.Invoice[i].ProductID,
+                                                                "CustomerName":oLocModel.oData.Invoice[i].CustomerName,
+                                                                "Discount":oLocModel.oData.Invoice[i].Discount,
+                                                                "OrderID": oLocModel.oData.Invoice[i].OrderID,
+                                                                "ProductName": oLocModel.oData.Invoice[i].ProductName,
+                                                                "Quantity": oLocModel.oData.Invoice[i].Quantity,
+                                                                "Salesperson": oLocModel.oData.Invoice[i].Salesperson,
+                                                                "ShipperName": oLocModel.oData.Invoice[i].ShipperName,
+                                                                "UnitPrice": oLocModel.oData.Invoice[i].UnitPrice};
+                                                                payload.push(PayloadBeta);                   
+                                                                }
+                                                        }
+                                            var locModel = new sap.ui.model.json.JSONModel();
+                                            locModel.setData({"Invoice":[]});
+                                            this.getView().setModel(locModel,"myJInvoiceModel4");
+                                            locModel.setProperty("/Invoice/",payload); 
         },
            toEmptyPage: function(){
           

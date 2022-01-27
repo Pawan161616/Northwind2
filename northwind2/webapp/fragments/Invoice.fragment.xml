@@ -22,10 +22,24 @@
 				<Input id="CustNameID"  showValueHelp="true" valueHelpRequest="_searchHelp"/>
                 <Label text = "Discount"/>
                 <ComboBox id="DiscountId" items="{
-                    path:'myJInviceModel2>/Invoice'
-                }">
-             <core:Item  text="{myJInviceModel2>Discount}"/>
+                    path:'myJInvoiceModel2>/Invoice'
+                }" change = "onSelectingDiscountID">
+             <core:Item  text="{myJInvoiceModel2>Discount}"/>
                 </ComboBox>
+                <Label text = "Order ID"/>
+                 <ComboBox id="orderId" items="{
+                    path:'myJInvoiceModel3>/Invoice'
+                }" change = "onSelectingOrderID">
+             <core:Item  text="{myJInvoiceModel3>OrderID}"/>
+                </ComboBox>
+
+                <Label text = "Quantity"/>
+                 <ComboBox id="QuantityID" items="{
+                    path:'myJInvoiceModel4>/Invoice'
+                }">
+             <core:Item  text="{myJInvoiceModel4>Quantity}"/>
+                </ComboBox>
+                
 
 			</f:content>
 		</f:SimpleForm>
